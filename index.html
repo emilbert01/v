@@ -38,26 +38,15 @@
             const music = document.getElementById('valentines-song');
             music.play().catch(error => console.log("Audio play blocked."));
 
-            // ito yung message na may line break sa 'My'
-            const line1 = "Happy Valentine's Day,";
-            const line2 = "My Nikolit! ❤️";
+            const message = "I may not be there to give you flowers personally, pero I used what I learned to make you this. Happy Valentine's Day, My Nikolit! You're always worth the effort. ❤️";
             let i = 0;
-            let j = 0;
             const target = document.getElementById("typewriter");
 
             function typeWriter() {
-                if (i < line1.length) {
-                    target.innerHTML += line1.charAt(i);
+                if (i < message.length) {
+                    target.innerHTML += message.charAt(i);
                     i++;
-                    setTimeout(typeWriter, 80);
-                } else if (i === line1.length) {
-                    target.innerHTML += "<br>"; // dito bababa yung text
-                    i++;
-                    setTimeout(typeWriter, 80);
-                } else if (j < line2.length) {
-                    target.innerHTML += line2.charAt(j);
-                    j++;
-                    setTimeout(typeWriter, 80);
+                    setTimeout(typeWriter, 45);
                 }
             }
             typeWriter();
