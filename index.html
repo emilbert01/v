@@ -11,8 +11,7 @@
 </head>
 <body>
     <div id="heart-container"></div>
-    
-    <audio id="valentines-song" src="music.mp3"></audio>
+    <audio id="valentines-song" src="music.mp3" preload="auto"></audio>
 
     <div class="glass-card" id="main-card">
         <div id="ask-section">
@@ -33,29 +32,38 @@
 
     <script>
         function celebrate() {
-            // hide question and show surprise
             document.getElementById('ask-section').classList.add('hidden');
             document.getElementById('reveal-section').classList.remove('hidden');
             
-            // play the special song
             const music = document.getElementById('valentines-song');
-            music.play().catch(error => console.log("Auto-play blocked, but click handled it!"));
+            music.play().catch(error => console.log("Audio play blocked."));
 
-            // start typewriter message
-            const message = "Happy Valentine's Day, My Nikolit! ❤️";
+            // ito yung message na may line break sa 'My'
+            const line1 = "Happy Valentine's Day,";
+            const line2 = "My Nikolit! ❤️";
             let i = 0;
+            let j = 0;
+            const target = document.getElementById("typewriter");
+
             function typeWriter() {
-                if (i < message.length) {
-                    document.getElementById("typewriter").innerHTML += message.charAt(i);
+                if (i < line1.length) {
+                    target.innerHTML += line1.charAt(i);
                     i++;
-                    setTimeout(typeWriter, 100);
+                    setTimeout(typeWriter, 80);
+                } else if (i === line1.length) {
+                    target.innerHTML += "<br>"; // dito bababa yung text
+                    i++;
+                    setTimeout(typeWriter, 80);
+                } else if (j < line2.length) {
+                    target.innerHTML += line2.charAt(j);
+                    j++;
+                    setTimeout(typeWriter, 80);
                 }
             }
             typeWriter();
 
-            // heart shower
-            for (let i = 0; i < 60; i++) {
-                setTimeout(spawnHeart, i * 120);
+            for (let i = 0; i < 50; i++) {
+                setTimeout(spawnHeart, i * 150);
             }
         }
 
